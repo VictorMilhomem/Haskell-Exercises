@@ -50,6 +50,18 @@ compress xs = case xs of
   (x:y:xs) -> if x == y then compress (y:xs) else x : compress (y:xs)
 
 
+pack :: Eq a => [a] -> [[a]]
+pack xs = case xs of 
+  [] -> error "Empty List"
+  [x] -> [[x]]
+  (x:xs) -> pack' xs [x]
+
+pack' :: Eq a => [a] -> [a] -> [[a]]
+pack' xs acc = case xs of
+  [] -> [acc]
+  (x:xs)-> if x == head acc then pack' xs (x:acc) else acc : pack' xs [x]
+
+
 main :: IO ()
 main = do
   print $ palindrome ['x', 'a', 'm', 'a', 'x'] 
