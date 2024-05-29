@@ -8,7 +8,6 @@ lastOne xs = case xs of
   (_:xs) -> lastOne xs
 
 
-
 lastTwo :: [a] -> [a]
 lastTwo xs = case xs of
   [] -> error "Empty List"
@@ -24,10 +23,12 @@ nth n xs
     [] -> error "Empty List"
     (y:ys) -> if n == 0 then y else nth (n-1) ys
 
+
 len :: [a] -> Int
 len xs = case xs of 
   [] -> 0 
   (_:xs) -> 1 + len xs 
+
 
 rev :: [a] -> [a]
 rev xs = case xs of
@@ -35,10 +36,19 @@ rev xs = case xs of
   [x] -> [x]
   (x:xs) -> rev xs ++ [x]
 
+
 palindrome :: Eq a => [a] -> Bool
 palindrome xs 
   | xs == rev xs = True
   | otherwise = False
+
+
+compress :: Eq a => [a] -> [a]
+compress xs = case xs of 
+  [] -> error "Empty List"
+  [x] -> [x]
+  (x:y:xs) -> if x == y then compress (y:xs) else x : compress (y:xs)
+
 
 main :: IO ()
 main = do
