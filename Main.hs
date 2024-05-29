@@ -1,5 +1,4 @@
 module Main where
-import Distribution.Simple.Utils (xargs)
 
 
 lastOne :: [a] -> a 
